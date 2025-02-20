@@ -1,4 +1,4 @@
-package org.example;
+package org.example.GameLogic;
 
 public class Game {
     private String[] board;
@@ -15,7 +15,7 @@ public class Game {
         System.out.println("  " + boardData[6] + " | "+ boardData[7] + " | " + boardData[8] + "  ");
     }
 
-    public boolean makeMove(int position, String character) {
+    public boolean registerMove(int position, String character) {
         if (position < 0 || position > 8 || !isValidMove(position)) {
             return false;
         }

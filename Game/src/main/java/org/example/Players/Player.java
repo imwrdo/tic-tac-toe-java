@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Players;
 
 public class Player {
     int id;
