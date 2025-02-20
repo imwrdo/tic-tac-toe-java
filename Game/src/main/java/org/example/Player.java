@@ -11,4 +11,16 @@ public class Player {
     public String getCharacter() {
         return character;
     }
+
+    public int getId(){
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", character='" + character + '\'' +
+                '}';
+    }
 }

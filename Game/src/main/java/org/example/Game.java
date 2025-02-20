@@ -5,15 +5,14 @@ public class Game {
 
     public Game() {
         board = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        boolean gameFinished = false;
     }
 
     public static void drawBoard(String[] boardData) {
-        System.out.println("| " + boardData[0] + " | "+ boardData[1] + " | " + boardData[2]+ " |");
-        System.out.println("|-----------|");
-        System.out.println("| " + boardData[3] + " | "+ boardData[4] + " | " + boardData[5]+ " |");
-        System.out.println("|-----------|");
-        System.out.println("| " + boardData[6] + " | "+ boardData[7] + " | " + boardData[8] + " |");
+        System.out.println("  " + boardData[0] + " | "+ boardData[1] + " | " + boardData[2]+ "  ");
+        System.out.println("------------");
+        System.out.println("  " + boardData[3] + " | "+ boardData[4] + " | " + boardData[5]+ " ");
+        System.out.println("------------");
+        System.out.println("  " + boardData[6] + " | "+ boardData[7] + " | " + boardData[8] + "  ");
     }
 
     public boolean makeMove(int position, String character) {
@@ -58,4 +57,11 @@ public class Game {
     public String[] getBoard() {
         return board;
     }
+
+    public Game cloneGame() {
+        Game clone = new Game();
+        clone.board = this.board.clone();
+        return clone;
+    }
+
 }
