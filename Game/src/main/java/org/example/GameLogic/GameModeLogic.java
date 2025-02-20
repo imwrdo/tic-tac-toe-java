@@ -15,7 +15,6 @@ public class GameModeLogic {
         while (true) {
             Game.drawBoard(game.getBoard());
             Player currentPlayer = isFirstPlayerTurn ? firstPlayer : secondPlayer;
-            System.out.println(currentPlayer);
             System.out.println("Player " + currentPlayer.getId() + "'s turn (" + currentPlayer.getCharacter() + ")");
 
             int position = currentPlayer instanceof ComputerPlayer ?
