@@ -26,7 +26,7 @@ public class GameModeLogic {
             }
             if (game.checkWin()) {
                 Game.drawBoard(game.getBoard());
-                System.out.println("Player with id: "+ currentPlayer.getId()+ " wins!");
+                System.out.println("Player "+ currentPlayer.getId()+" ("+currentPlayer.getCharacter()+")"+ " wins!");
                 break;
             }
             if (game.isBoardFull()) {
