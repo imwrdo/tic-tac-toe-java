@@ -1,6 +1,6 @@
-package org.example.Players;
+package org.example.players;
 
-import org.example.GameLogic.Game;
+import org.example.logic.Game;
 
 public class ComputerPlayer extends Player {
     private final String opponentChar;

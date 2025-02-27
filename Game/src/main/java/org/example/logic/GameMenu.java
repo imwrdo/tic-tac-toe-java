@@ -1,4 +1,4 @@
-package org.example.GameLogic;
+package org.example.logic;
 
 import java.util.Scanner;
 

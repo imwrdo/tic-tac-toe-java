@@ -1,8 +1,8 @@
-package org.example.GameLogic;
+package org.example.logic;
 
-import org.example.Players.ComputerPlayer;
-import org.example.Players.Player;
-import org.example.Players.PlayerCreator;
+import org.example.players.ComputerPlayer;
+import org.example.players.Player;
+import org.example.players.PlayerCreator;
 
 import java.util.Scanner;
 
