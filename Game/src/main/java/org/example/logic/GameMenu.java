@@ -3,7 +3,7 @@ package org.example.logic;
 import java.util.Scanner;
 
 public class GameMenu {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     // Game start point
     public void beginGame() {
@@ -33,7 +33,7 @@ public class GameMenu {
     // User choice validation
     public int getUserChoice() {
         try {
-            return Integer.parseInt(scanner.nextLine());
+            return Integer.parseInt(SCANNER.nextLine());
         } catch (NumberFormatException e) {
             System.out.println("Your choice must be a number between 1 and 3!");
             return 0;

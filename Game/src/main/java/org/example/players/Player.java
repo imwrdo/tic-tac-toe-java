@@ -1,8 +1,8 @@
 package org.example.players;
 
 public class Player {
-    int id;
-    String character;
+    private final int id;
+    private final String character;
     public Player(int id, String character) {
         this.id = id;
         this.character = character;
@@ -11,7 +11,6 @@ public class Player {
     public String getCharacter() {
         return character;
     }
-
     public int getId(){
         return id;
     }

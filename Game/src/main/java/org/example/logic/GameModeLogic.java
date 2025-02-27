@@ -7,26 +7,29 @@ import org.example.players.PlayerCreator;
 import java.util.Scanner;
 
 public class GameModeLogic {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     // Game logic
     private void playGame(Player firstPlayer, Player secondPlayer, boolean isFirstPlayerTurn) {
         Game game = new Game();
         while (true) {
             Game.drawBoard(game.getBoard());
-            Player currentPlayer = isFirstPlayerTurn ? firstPlayer : secondPlayer;
-            System.out.println("Player " + currentPlayer.getId() + "'s turn (" + currentPlayer.getCharacter() + ")");
+            Player currentPlayer = isFirstPlayerTurn
+                    ? firstPlayer
+                    : secondPlayer;
+            System.out.printf("Player %d's turn (%s)", currentPlayer.getId(), currentPlayer.getCharacter());
 
             int position = currentPlayer instanceof ComputerPlayer ?
-                    ((ComputerPlayer) currentPlayer).getBestMove(game):getUserMove();
+                    ((ComputerPlayer) currentPlayer).getBestMove(game)
+                    : getUserMove();
 
-            if (!game.registerMove(position,currentPlayer.getCharacter())){
+            if (!game.registerMove(position, currentPlayer.getCharacter())) {
                 System.out.println("You did invalid move");
                 continue;
             }
             if (game.checkWin()) {
                 Game.drawBoard(game.getBoard());
-                System.out.println("Player "+ currentPlayer.getId()+" ("+currentPlayer.getCharacter()+")"+ " wins!");
+                System.out.printf("Player %d's (%s) wins!", currentPlayer.getId(), currentPlayer.getCharacter());
                 break;
             }
             if (game.isBoardFull()) {
@@ -44,32 +47,34 @@ public class GameModeLogic {
 
         while (true) {
             try {
-                int position = Integer.parseInt(scanner.nextLine());
+                int position = Integer.parseInt(SCANNER.nextLine());
 
-                if (position >= 1 && position <= 9){
+                if (position >= 1 && position <= 9) {
                     return position - 1;
                 }
 
                 System.out.println("Invalid position! Enter a number between 1 and 9.");
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Position must be a number!");
             }
         }
     }
 
     // Human vs Human
-    public void beginDuoGame(){
+    public void beginDuoGame() {
         System.out.println("Welcome to the game with another player!\n");
 
         PlayerCreator playerCreator = new PlayerCreator();
-        Player firstPlayer = playerCreator.createPlayer(1);
+        Player firstPlayer = playerCreator.createPlayer();
         if (firstPlayer == null) {
             System.out.println("Invalid character choice.");
             return;
         }
-        Player secondPlayer = new Player(2,firstPlayer.getCharacter().equals("X")?"0":"X");
+        Player secondPlayer = new Player(2, firstPlayer.getCharacter().equals("X")
+                ? "0"
+                : "X");
         boolean isFirstPlayerTurn = true;
-        playGame(firstPlayer,secondPlayer,isFirstPlayerTurn);
+        playGame(firstPlayer, secondPlayer, isFirstPlayerTurn);
 
         System.out.println("\nGame Over!");
     }
@@ -79,16 +84,15 @@ public class GameModeLogic {
         System.out.println("Welcome to the Single game!\n");
 
         PlayerCreator playerCreator = new PlayerCreator();
-        Player player = playerCreator.createPlayer(1);
+        Player player = playerCreator.createPlayer();
         if (player == null) {
             System.out.println("Invalid character choice. Returning to main menu.");
             return;
         }
 
         ComputerPlayer computer = new ComputerPlayer(2, player.getCharacter().equals("X") ? "O" : "X");
-        Game game = new Game();
         boolean isPlayerTurn = true;
-        playGame(player,computer,isPlayerTurn);
+        playGame(player, computer, isPlayerTurn);
 
         System.out.println("\nGame Over!");
     }
