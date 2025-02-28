@@ -51,7 +51,7 @@ public class GameModeLogic {
             try {
                 int position = Integer.parseInt(SCANNER.nextLine());
                 validatePosition(position);
-                return position;
+                return position-1;
             } catch (NumberFormatException e) {
                 System.out.println("Position must be a number!");
             }catch (IllegalArgumentException e) {
