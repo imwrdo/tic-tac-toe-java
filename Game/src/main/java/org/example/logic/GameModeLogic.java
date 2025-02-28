@@ -73,7 +73,7 @@ public class GameModeLogic {
         PlayerCreator playerCreator = new PlayerCreator();
         Player firstPlayer = null;
         do {
-            firstPlayer = playerCreator.createPlayer();
+            firstPlayer = playerCreator.createPlayer(1);
         }while(firstPlayer == null);
 
         Character secondPlayerChar = firstPlayer.getCharacterEnum() == Character.X
@@ -91,11 +91,10 @@ public class GameModeLogic {
         System.out.println("Welcome to the Single game!\n");
 
         PlayerCreator playerCreator = new PlayerCreator();
-        Player player = playerCreator.createPlayer();
-        if (player == null) {
-            System.out.println("Invalid character choice. Returning to main menu.");
-            return;
-        }
+        Player player = null;
+        do {
+            player = playerCreator.createPlayer(1);
+        }while(player == null);
 
         Character computerChar = player.getCharacterEnum() == Character.X ? Character.O : Character.X;
         ComputerPlayer computer = new ComputerPlayer(2, computerChar);

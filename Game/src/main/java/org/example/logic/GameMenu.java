@@ -12,18 +12,24 @@ public class GameMenu {
         System.out.println("Welcome to the Tic-Tac-Toe game!\n");
         while (isRunning) {
             displayMenu();
-            int choice = getUserChoice();
-            switch (choice) {
-                case 1 -> new GameModeLogic().beginDuoGame();
-                case 2 -> new GameModeLogic().beginSingleGame();
-                case 3 -> isRunning = false;
-                default -> System.out.println("Invalid choice");
+            try {
+                int choice = getUserChoice();
+                switch (choice) {
+                    case 1 -> new GameModeLogic().beginDuoGame();
+                    case 2 -> new GameModeLogic().beginSingleGame();
+                    case 3 -> isRunning = false;
+                    default -> System.out.println("Invalid choice. Please enter a number between 1 and 3.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                SCANNER.nextLine();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
-
     }
 
-    // Just show menu XD
+    // Display the menu options
     public void displayMenu() {
         StringBuilder menuText = new StringBuilder();
         menuText.append("\nMenu:\n")
@@ -35,14 +41,14 @@ public class GameMenu {
         System.out.println(menuText);
     }
 
-    // User choice validation
-    public int getUserChoice() {
-        try {
-            return Integer.parseInt(SCANNER.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("Your choice must be a number between 1 and 3!");
-            return 0;
+    // Get user input for menu choice
+    public int getUserChoice() throws NumberFormatException {
+        while (true) {
+            try {
+                return Integer.parseInt(SCANNER.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
         }
     }
 }
-
