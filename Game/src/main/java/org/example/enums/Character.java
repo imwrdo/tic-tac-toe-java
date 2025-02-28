@@ -11,13 +11,13 @@ public enum Character {
         this.value = value;
     }
 
-    public String getValue() {
+    public String getCharacterValue() {
         return value;
     }
 
-    public static Character fromString(String value) {
+    public static Character getCharacterFromString(String value) {
         return Arrays.stream(values())
-                .filter(c -> c.getValue().equals(value))
+                .filter(c -> c.getCharacterValue().equals(value))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Invalid character: " + value));
     }

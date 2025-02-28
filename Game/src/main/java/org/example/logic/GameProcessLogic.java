@@ -1,24 +1,23 @@
 package org.example.logic;
 
-import org.example.enums.Character;
 import org.example.players.ComputerPlayer;
 import org.example.players.Player;
-import org.example.players.PlayerCreator;
 
 import java.util.Scanner;
 
-public class GameModeLogic {
+public class GameProcessLogic {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     // Game logic
-    private void playGame(Player firstPlayer, Player secondPlayer, boolean isFirstPlayerTurn) {
+    void playGame(Player firstPlayer, Player secondPlayer, boolean isFirstPlayerTurn) {
         Game game = new Game();
         while (true) {
             Game.drawBoard(game.getBoard());
             Player currentPlayer = isFirstPlayerTurn
                     ? firstPlayer
                     : secondPlayer;
-            System.out.println("Player %d's turn (%s)".formatted(currentPlayer.getId(), currentPlayer.getCharacter()));
+            System.out.println("Player %d's turn (%s)"
+                    .formatted(currentPlayer.getId(), currentPlayer.getCharacter()));
 
 
             int position = currentPlayer instanceof ComputerPlayer
@@ -31,7 +30,8 @@ public class GameModeLogic {
             }
             if (game.checkWin()) {
                 Game.drawBoard(game.getBoard());
-                System.out.println("Player %d's (%s) wins!".formatted(currentPlayer.getId(), currentPlayer.getCharacter()));
+                System.out.println("Player %d's (%s) wins!"
+                        .formatted(currentPlayer.getId(), currentPlayer.getCharacter()));
                 break;
             }
             if (game.isBoardFull()) {
@@ -66,42 +66,5 @@ public class GameModeLogic {
         }
     }
 
-    // Human vs Human
-    public void beginDuoGame() {
-        System.out.println("Welcome to the game with another player!\n");
-
-        PlayerCreator playerCreator = new PlayerCreator();
-        Player firstPlayer = null;
-        do {
-            firstPlayer = playerCreator.createPlayer(1);
-        }while(firstPlayer == null);
-
-        Character secondPlayerChar = firstPlayer.getCharacterEnum() == Character.X
-                ? Character.O
-                : Character.X;
-        Player secondPlayer = new Player(2, secondPlayerChar);
-        boolean isFirstPlayerTurn = true;
-        playGame(firstPlayer, secondPlayer, isFirstPlayerTurn);
-
-        System.out.println("\nGame Over!");
-    }
-
-    // Human vs Computer
-    public void beginSingleGame() {
-        System.out.println("Welcome to the Single game!\n");
-
-        PlayerCreator playerCreator = new PlayerCreator();
-        Player player = null;
-        do {
-            player = playerCreator.createPlayer(1);
-        }while(player == null);
-
-        Character computerChar = player.getCharacterEnum() == Character.X ? Character.O : Character.X;
-        ComputerPlayer computer = new ComputerPlayer(2, computerChar);
-        boolean isPlayerTurn = true;
-        playGame(player, computer, isPlayerTurn);
-
-        System.out.println("\nGame Over!");
-    }
 }
 

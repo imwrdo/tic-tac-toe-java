@@ -12,7 +12,7 @@ public class Player {
     }
 
     public String getCharacter() {
-        return character.getValue();
+        return character.getCharacterValue();
     }
 
     public Character getCharacterEnum() {

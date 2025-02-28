@@ -11,7 +11,7 @@ public class ComputerPlayer extends Player {
     }
 
     private String getOpponentCharacter() {
-        return getCharacterEnum() == Character.X ? Character.O.getValue() : Character.X.getValue();
+        return getCharacterEnum() == Character.X ? Character.O.getCharacterValue() : Character.X.getCharacterValue();
     }
 
     public int getBestMove(Game game) {

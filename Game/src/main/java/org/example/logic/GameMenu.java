@@ -1,5 +1,8 @@
 package org.example.logic;
 
+import org.example.logic.gamemode.HumanVsComputerMode;
+import org.example.logic.gamemode.HumanVsHumanMode;
+
 import java.util.Scanner;
 
 public class GameMenu {
@@ -15,8 +18,8 @@ public class GameMenu {
             try {
                 int choice = getUserChoice();
                 switch (choice) {
-                    case 1 -> new GameModeLogic().beginDuoGame();
-                    case 2 -> new GameModeLogic().beginSingleGame();
+                    case 1 -> new HumanVsHumanMode().startGame();
+                    case 2 -> new HumanVsComputerMode().startGame();
                     case 3 -> isRunning = false;
                     default -> System.out.println("Invalid choice. Please enter a number between 1 and 3.");
                 }
