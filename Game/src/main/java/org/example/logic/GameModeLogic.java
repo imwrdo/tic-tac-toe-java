@@ -1,5 +1,6 @@
 package org.example.logic;
 
+import org.example.enums.Character;
 import org.example.players.ComputerPlayer;
 import org.example.players.Player;
 import org.example.players.PlayerCreator;
@@ -17,10 +18,11 @@ public class GameModeLogic {
             Player currentPlayer = isFirstPlayerTurn
                     ? firstPlayer
                     : secondPlayer;
-            System.out.printf("Player %d's turn (%s)", currentPlayer.getId(), currentPlayer.getCharacter());
+            System.out.println("Player %d's turn (%s)".formatted(currentPlayer.getId(), currentPlayer.getCharacter()));
 
-            int position = currentPlayer instanceof ComputerPlayer ?
-                    ((ComputerPlayer) currentPlayer).getBestMove(game)
+
+            int position = currentPlayer instanceof ComputerPlayer
+                    ? ((ComputerPlayer) currentPlayer).getBestMove(game)
                     : getUserMove();
 
             if (!game.registerMove(position, currentPlayer.getCharacter())) {
@@ -29,7 +31,7 @@ public class GameModeLogic {
             }
             if (game.checkWin()) {
                 Game.drawBoard(game.getBoard());
-                System.out.printf("Player %d's (%s) wins!", currentPlayer.getId(), currentPlayer.getCharacter());
+                System.out.println("Player %d's (%s) wins!".formatted(currentPlayer.getId(), currentPlayer.getCharacter()));
                 break;
             }
             if (game.isBoardFull()) {
@@ -48,15 +50,19 @@ public class GameModeLogic {
         while (true) {
             try {
                 int position = Integer.parseInt(SCANNER.nextLine());
-
-                if (position >= 1 && position <= 9) {
-                    return position - 1;
-                }
-
-                System.out.println("Invalid position! Enter a number between 1 and 9.");
+                validatePosition(position);
+                return position;
             } catch (NumberFormatException e) {
                 System.out.println("Position must be a number!");
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private void validatePosition(int position) {
+        if (position < 1 || position > 9) {
+            throw new IllegalArgumentException("Invalid position! Please enter a number between 1 and 9.");
         }
     }
 
@@ -65,14 +71,15 @@ public class GameModeLogic {
         System.out.println("Welcome to the game with another player!\n");
 
         PlayerCreator playerCreator = new PlayerCreator();
-        Player firstPlayer = playerCreator.createPlayer();
-        if (firstPlayer == null) {
-            System.out.println("Invalid character choice.");
-            return;
-        }
-        Player secondPlayer = new Player(2, firstPlayer.getCharacter().equals("X")
-                ? "0"
-                : "X");
+        Player firstPlayer = null;
+        do {
+            firstPlayer = playerCreator.createPlayer();
+        }while(firstPlayer == null);
+
+        Character secondPlayerChar = firstPlayer.getCharacterEnum() == Character.X
+                ? Character.O
+                : Character.X;
+        Player secondPlayer = new Player(2, secondPlayerChar);
         boolean isFirstPlayerTurn = true;
         playGame(firstPlayer, secondPlayer, isFirstPlayerTurn);
 
@@ -90,7 +97,8 @@ public class GameModeLogic {
             return;
         }
 
-        ComputerPlayer computer = new ComputerPlayer(2, player.getCharacter().equals("X") ? "O" : "X");
+        Character computerChar = player.getCharacterEnum() == Character.X ? Character.O : Character.X;
+        ComputerPlayer computer = new ComputerPlayer(2, computerChar);
         boolean isPlayerTurn = true;
         playGame(player, computer, isPlayerTurn);
 

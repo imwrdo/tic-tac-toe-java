@@ -1,17 +1,25 @@
 package org.example.players;
 
+import org.example.enums.Character;
+
 public class Player {
     private final int id;
-    private final String character;
-    public Player(int id, String character) {
+    private final Character character;
+
+    public Player(int id, Character character) {
         this.id = id;
         this.character = character;
     }
 
     public String getCharacter() {
+        return character.getValue();
+    }
+
+    public Character getCharacterEnum() {
         return character;
     }
-    public int getId(){
+
+    public int getId() {
         return id;
     }
 
@@ -22,4 +30,6 @@ public class Player {
                 ", character='" + character + '\'' +
                 '}';
     }
+
+
 }

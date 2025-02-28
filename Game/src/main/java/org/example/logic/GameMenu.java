@@ -25,9 +25,14 @@ public class GameMenu {
 
     // Just show menu XD
     public void displayMenu() {
-        System.out.println("\nMenu:");
-        System.out.println("Please select game mode:");
-        System.out.println("1 - Human vs. Human\n2 - Human vs. Computer\n3 - Exit");
+        StringBuilder menuText = new StringBuilder();
+        menuText.append("\nMenu:\n")
+                .append("Please select game mode:\n")
+                .append("1 - Human vs. Human\n")
+                .append("2 - Human vs. Computer\n")
+                .append("3 - Exit");
+
+        System.out.println(menuText);
     }
 
     // User choice validation
