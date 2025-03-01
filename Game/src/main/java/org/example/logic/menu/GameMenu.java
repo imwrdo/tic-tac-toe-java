@@ -1,14 +1,22 @@
-package org.example.logic;
+package org.example.logic.menu;
 
 import org.example.logic.gamemode.HumanVsComputerMode;
 import org.example.logic.gamemode.HumanVsHumanMode;
 
 import java.util.Scanner;
 
+/**
+ * Manages the main menu and game mode selection for the Tic-Tac-Toe game.
+ * Allows players to choose between Human vs. Human, Human vs. Computer, or exit the game.
+ */
 public class GameMenu {
+    // Scanner for reading user input
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    // Game start point
+    /**
+     * Starts the game menu and handles user input for selecting game modes.
+     * Continuously displays the menu until the user chooses to exit.
+     */
     public void beginGame() {
         boolean isRunning = true;
 
@@ -32,7 +40,10 @@ public class GameMenu {
         }
     }
 
-    // Display the menu options
+    /**
+     * Displays the menu options to the user.
+     * Provides choices for game modes and exiting the application.
+     */
     public void displayMenu() {
         StringBuilder menuText = new StringBuilder();
         menuText.append("\nMenu:\n")
@@ -44,7 +55,11 @@ public class GameMenu {
         System.out.println(menuText);
     }
 
-    // Get user input for menu choice
+    /**
+     * Retrieves and validates the user's menu choice.
+     * @return The user's choice as an integer.
+     * @throws NumberFormatException if the input is not a valid number.
+     */
     public int getUserChoice() throws NumberFormatException {
         while (true) {
             try {
