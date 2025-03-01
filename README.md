@@ -38,9 +38,31 @@ A command-line implementation of the classic Tic-Tac-Toe game written in Java.
 
 ## Project Structure
 
-- `Main.java`: Start point
-- `Players/`: Player-related classes
-- `GameLogic/`: Game logic-related classes
+```
+src
+└── org.example
+    ├── enums
+    │    └── Character.java - Enum representing the characters used in the game
+    ├── logic
+    │    ├── core
+    │    │    ├── Game.java - Initializes a new game
+    │    │    ├── GameProcessLogicHandler.java - Handles the game loop logic
+    │    │    └── GameSession.java - Starts the game session by setting up players, and starting the game loop.
+    │    ├── gamemode
+    │    │    ├── HumanVsComputerMode.java - Implements the Human vs. Computer game mode.
+    │    │    └── HumanVsHumanMode.java - Implements the Human vs. Human game mode
+    │    └── menu
+    │         └── GameMenu.java - Manages the main menu and game mode selection
+    ├── players
+    │    ├── types
+    │    │    ├── Player.java - Represents a Human player
+    │    │    └── ComputerPlayer.java - Represents a Computer player
+    │    └── creator
+    │         └── PlayerCreator.java - Handles the creation of a Player
+    └── Main.java - You know what it is
+   
+
+```
 
 ## Technical Details
 
